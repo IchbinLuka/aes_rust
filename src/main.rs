@@ -5,7 +5,7 @@ use aes::{Aes256, cipher::{KeyInit, generic_array::GenericArray, BlockEncrypt, B
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() != 2 {
-        println!("Invalid input");
+        println!("Invalid input. Usage: aes [filename]");
         return;
     }
     let decrypt = args[1].ends_with(".enc");
@@ -13,7 +13,7 @@ fn main() {
     if !decrypt {
         let confirm = rpassword::prompt_password("Confirm: ").unwrap();
         if password != confirm {
-            println!("Password do not match");
+            println!("Passwords do not match");
             return;
         }
     }
